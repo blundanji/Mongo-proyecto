@@ -1,0 +1,27 @@
+# Proyecto NoSQL - Subir info de Google Sheets y migrarla a AWS
+
+#Una vez subida la informacion, se crean indices para mejorar el query performance
+db.posts.createIndex( { assigned : 1 } )
+db.posts.createIndex( { date : 1 } )
+db.posts.createIndex( { approved : 1 } )
+
+# AWS instance = ec2-52-90-127-59.compute-1.amazonaws.com
+
+#Modificar mongod.cfg con direccion de AWS
+# network interfaces
+net:
+  port: 27017
+  bindIp: ec2-52-90-127-59.compute-1.amazonaws.com
+  
+#Usar mongoimport para subir info a AWS (Con DNS de AWS)
+
+mongoimport --ec2-52-90-127-59.compute-1.amazonaws.com:27017 --db Account_location-db --file Account_location.json
+
+use Account_location-db
+
+db.Account_location.count(922)
+
+db.Account_location.aggregate( [
+   { $group: { _id: { state: "$state", city: "$city" }, pop: { $sum: "$pop" } } },
+   { $group: { _id: "$_id.state", avgCityPop: { $avg: "$pop" } } }
+] )
