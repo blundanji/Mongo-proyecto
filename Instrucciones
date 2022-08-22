@@ -22,6 +22,6 @@ use Account_location-db
 db.Account_location.count(922)
 
 db.Account_location.aggregate( [
-   { $group: { _id: { state: "$state", city: "$city" }, pop: { $sum: "$pop" } } },
-   { $group: { _id: "$_id.state", avgCityPop: { $avg: "$pop" } } }
-] )
+   { $group: { _id: { Assigned: "$Assigned", Data: "$Data", Contact:$Contact , Scope: $Scope, Approved:$Approved,State:$State, Reason: $Reason, Time_taken_to_resolve:$Time_taken_to_resolve}}}])
+   
+
