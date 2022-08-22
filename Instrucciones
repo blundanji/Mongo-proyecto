@@ -24,4 +24,13 @@ db.Account_location.count(922)
 db.Account_location.aggregate( [
    { $group: { _id: { Assigned: "$Assigned", Data: "$Data", Contact:$Contact , Scope: $Scope, Approved:$Approved,State:$State, Reason: $Reason, Time_taken_to_resolve:$Time_taken_to_resolve}}}])
    
+// se muestran algunos insert de lo que seria la hoja de calculo de google sheet a mongodb
 
+db.products.insertMany( [
+      {  Assigned:"chavesmendez@google.com", Data: "7/5/2022", Contact:"No (first contact)", Scope: "In Scope", State:"Rejected", Reason: "Requested country same as current"
+, Time_taken_to_resolve: "3"},
+        {  Assigned:"zapatabustos@google.com", Data: "7/6/2022", Contact:"No (first contact)", Scope: "In Scope", State:"Approved", Reason: "Live different"
+, Time_taken_to_resolve:" 4 "},
+      {  Assigned:"apuy@google.com", Data: "7/5/2022", Contact:"No (first contact)", Scope: "In Scope", State:"Approved", Reason: "Moved country"
+, Time_taken_to_resolve:" 4 "},
+   ] );
