@@ -1,5 +1,8 @@
 # Proyecto NoSQL - Subir info de Google Sheets y migrarla a AWS
 
+Archivo de Google sheets con el sample data:
+https://docs.google.com/spreadsheets/d/1IdKspK2yh__eTE63yY60Mi1FLg3moBzcDFkuBxIRxs8/edit#gid=0
+
 #Una vez subida la informacion, se crean indices para mejorar el query performance
 db.posts.createIndex( { assigned : 1 } )
 db.posts.createIndex( { date : 1 } )
